@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WBUT</title>
+
+<script>
+    function loadData(){
+        var myTable = document.getElementById("avik")
+        fetch("/students")
+        .then(e=>e.json())
+        .then(response=>{
+            for(var i = 0; i < response.length; i++){
+                var name = response[i]["name"]
+                var td1 = document.createElement("td")
+                td1.innerText = name
+
+                var roll_no = response[i]["roll_no"]
+                var td2 = document.createElement("td")
+                td2.innerText = roll_no
+
+                var row = document.createElement("tr")
+                row.appendChild(td1)
+                row.appendChild(td2)
+                myTable.appendChild(row)
+            }
+
+        })
+    }
+</script>
+
+
+</head>
+<body>
+<h1>Welcome to WBUT</h1>
+<tr>
+    <td>Add Students :</td>
+    <td><a href="/submit">submit</a></td>
+</tr>
+<button onclick="loadData()">Load data</button>
+<table id="avik" border="1">
+</table>
+</body>
+</html>
